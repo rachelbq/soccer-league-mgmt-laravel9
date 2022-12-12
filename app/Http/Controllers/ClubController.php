@@ -18,16 +18,27 @@ class ClubController extends Controller
     }
 
     public function storeClub(Request $request){
-        $club = new Club();
+
+        $request->validate([
+            'name' => 'required',
+            'coach' => 'required',
+            'pitch' => 'required',
+            'location' => 'required',
+        ]);        
+
+        // $club = new Club();
         
-        $club->name = $request->name;
-        $club->coach = $request->coach;
-        $club->pitch = $request->pitch;
-        $club->location = $request->location;
+        // $club->name = $request->name;
+        // $club->coach = $request->coach;
+        // $club->pitch = $request->pitch;
+        // $club->location = $request->location;
 
-        //return $club;
+        // //return $club;
 
-        $club->save();
+        // $club->save();
+
+        //massive allocation:
+        $club = Club::create($request->all());
 
         return redirect()->route('clubs.show', $club);
     }
@@ -45,16 +56,32 @@ class ClubController extends Controller
 
     public function updateClub(Request $request, Club $club){
         //return $club;
+
+        $request->validate([
+            'name' => 'required',
+            'coach' => 'required',
+            'pitch' => 'required',
+            'location' => 'required',
+        ]);
         
-        $club->name = $request->name;
-        $club->coach = $request->coach;
-        $club->pitch = $request->pitch;
-        $club->location = $request->location;
+        // $club->name = $request->name;
+        // $club->coach = $request->coach;
+        // $club->pitch = $request->pitch;
+        // $club->location = $request->location;
 
-        //return $club;
+        // //return $club;
 
-        $club->save();
+        // $club->save();
+        
+        //massive allocation:
+        $club->update($request->all());
 
         return view('clubs.showClub', ['club'=>$club]);
+    }
+
+    public function destroyClub(Club $club){
+        $club->delete();
+
+        return redirect()->route('clubs.indexClub');        
     }
 }

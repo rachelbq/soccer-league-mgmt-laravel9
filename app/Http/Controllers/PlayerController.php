@@ -18,15 +18,24 @@ class PlayerController extends Controller
     }
 
     public function storePlayer(Request $request){
-        $player = new Player();
+
+        $request->validate([
+            'name' => 'required',
+            'age' => 'required',
+        ]);
+
+        // $player = new Player();
         
-        $player->name = $request->name;
-        $player->age = $request->age;
-        $player->position = $request->position;
+        // $player->name = $request->name;
+        // $player->age = $request->age;
+        // $player->position = $request->position;
 
-        //return $player;
+        // //return $player;
 
-        $player->save();
+        // $player->save();
+
+        //massive allocation:
+        $player = Player::create($request->all());
 
         return redirect()->route('players.show', $player);
     }
@@ -44,15 +53,29 @@ class PlayerController extends Controller
 
     public function updatePlayer(Request $request, Player $player){
         //return $player;
+
+        $request->validate([
+            'name' => 'required',
+            'age' => 'required|min:2|max:2',
+        ]);
         
-        $player->name = $request->name;
-        $player->age = $request->age;
-        $player->position = $request->position;
+        // $player->name = $request->name;
+        // $player->age = $request->age;
+        // $player->position = $request->position;
 
-        //return $player;
+        // //return $player;
 
-        $player->save();
+        // $player->save();
+
+        //massive allocation:
+        $player->update($request->all());
 
         return view('players.showPlayer', ['player'=>$player]);
+    }
+
+    public function destroyPlayer(Player $player){
+        $player->delete();
+
+        return redirect()->route('players.indexPlayer');        
     }
 }

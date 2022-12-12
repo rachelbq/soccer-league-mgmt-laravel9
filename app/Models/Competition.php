@@ -9,7 +9,7 @@ class Competition extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['score'];
 
     /* -- friendly urls -- */
     public function getRouteKeyName()
