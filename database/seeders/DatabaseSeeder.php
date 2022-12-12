@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Club;
+use App\Models\Competition;
+use App\Models\Player;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +23,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        Club::factory(10)->create();
+        Competition::factory(10)->create();
+        Player::factory(80)->create();   
     }
 }
