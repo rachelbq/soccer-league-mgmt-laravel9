@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('competitions', function (Blueprint $table) {
             $table->id();
-            $table->date('day');
+            $table->string('day');
+            $table->string('slug');
             $table->time('hour');
 
             $table->foreignId('id_local_club')
