@@ -18,16 +18,26 @@ class CompetitionController extends Controller
     }
 
     public function storeCompetition(Request $request){
-        $competition = new Competition();
+
+        $request->validate([
+            'date' => 'required',
+            'hour' => 'required',
+            'referee' => 'required',
+        ]);
+
+        // $competition = new Competition();
         
-        $competition->day = $request->day;
-        $competition->hour = $request->hour;
-        $competition->referee = $request->referee;
-        $competition->score = $request->score;
+        // $competition->day = $request->day;
+        // $competition->hour = $request->hour;
+        // $competition->referee = $request->referee;
+        // $competition->score = $request->score;
 
-        //return $competition;
+        // //return $competition;
 
-        $competition->save();
+        // $competition->save();
+
+        //massive allocation:
+        $competition = Competition::create($request->all());
 
         return redirect()->route('competitions.show', $competition);
     }
@@ -45,16 +55,31 @@ class CompetitionController extends Controller
 
     public function updateCompetition(Request $request, Competition $competition){
         //return $competition;
+
+        $request->validate([
+            'date' => 'required',
+            'hour' => 'required|min:5|max:5',
+            'referee' => 'required',
+        ]);
         
-        $competition->day = $request->day;
-        $competition->hour = $request->hour;
-        $competition->referee = $request->referee;
-        $competition->score = $request->score;
+        // $competition->day = $request->day;
+        // $competition->hour = $request->hour;
+        // $competition->referee = $request->referee;
+        // $competition->score = $request->score;
 
-        //return $competition;
+        // //return $competition;
 
-        $competition->save();
+        // $competition->save();
+
+        //massive allocation:
+        $competition->update($request->all());
 
         return view('competitions.showCompetition', ['competition'=>$competition]);
+    }
+
+    public function destroyCompetition(Competition $competition){
+        $competition->delete();
+
+        return redirect()->route('competitions.indexCompetition');     
     }
 }
