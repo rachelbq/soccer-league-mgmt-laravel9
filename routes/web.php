@@ -28,7 +28,7 @@ Route::post('clubs', [ClubController::class, 'storeClub'])->name('clubs.store');
 Route::get('clubs/{club}', [ClubController::class, 'showClub'])->name('clubs.show');
 Route::get('clubs/{club}/edit', [ClubController::class, 'editClub'])->name('clubs.edit');
 Route::put('clubs/{club}', [ClubController::class, 'updateClub'])->name('clubs.update');
-//Route::delete('clubs/{club}/delete', [ClubController::class, 'destroyClub'])->name('clubs.destroy');
+Route::delete('clubs/{club}', [ClubController::class, 'destroyClub'])->name('clubs.destroy');
 
 // players routes
 Route::get('players', [PlayerController::class, 'indexPlayer'])->name('players.index');
@@ -37,7 +37,7 @@ Route::post('players', [PlayerController::class, 'storePlayer'])->name('players.
 Route::get('players/{player}', [PlayerController::class, 'showPlayer'])->name('players.show');
 Route::get('players/{player}/edit', [PlayerController::class, 'editPlayer'])->name('players.edit');
 Route::put('players/{player}', [PlayerController::class, 'updatePlayer'])->name('players.update');
-//Route::delete('players/{player}/delete', [PlayerController::class, 'destroyPlayer'])->name('players.destroy');
+Route::delete('players/{player}', [PlayerController::class, 'destroyPlayer'])->name('players.destroy');
 
 // competitions routes
 Route::get('competitions', [CompetitionController::class, 'indexCompetition'])->name('competitions.index');
@@ -46,4 +46,4 @@ Route::post('competitions', [CompetitionController::class, 'storeCompetition'])-
 Route::get('competitions/{competition}', [CompetitionController::class, 'showCompetition'])->name('competitions.show');
 Route::get('competitions/{competition}/edit', [CompetitionController::class, 'editCompetition'])->name('competitions.edit');
 Route::put('competitions/{competition}', [CompetitionController::class, 'updateCompetition'])->name('competitions.update');
-//Route::delete('competitions/{competition}/delete', [CompetitionController::class, 'destroyCompetition'])->name('competitions.destroy');
+Route::delete('competitions/{competition}', [CompetitionController::class, 'destroyCompetition'])->name('competitions.destroy');
