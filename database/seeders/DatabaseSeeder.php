@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
 
         Club::factory(10)->create();
         Competition::factory(10)->create();
-        Player::factory(80)->create();   
+        Player::factory(100)->create();   
     }
 }

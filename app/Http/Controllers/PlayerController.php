@@ -8,7 +8,7 @@ use App\Models\Player;
 class PlayerController extends Controller
 {
     public function indexPlayer(){
-        $players = Player::orderb('id', 'desc')->paginate();
+        $players = Player::orderby('id', 'desc')->paginate();
         //return $players;
         return view('players.indexPlayer', compact('players'));
     }

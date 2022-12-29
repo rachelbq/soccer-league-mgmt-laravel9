@@ -8,7 +8,7 @@ use App\Models\Competition;
 class CompetitionController extends Controller
 {
     public function indexCompetition(){
-        $competitions = Competition::orderb('id', 'desc')->paginate();
+        $competitions = Competition::orderby('id', 'desc')->paginate();
         //return $competitions;
         return view('competitions.indexCompetition', compact('competitions'));
     }
@@ -57,9 +57,10 @@ class CompetitionController extends Controller
         //return $competition;
 
         $request->validate([
-            'date' => 'required',
+            'day' => 'required',
             'hour' => 'required|min:5|max:5',
-            'referee' => 'required',
+            'id_local_club' => 'required',
+            'id_visitor_club' => 'required',
         ]);
         
         // $competition->day = $request->day;

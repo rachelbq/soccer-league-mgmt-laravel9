@@ -24,7 +24,7 @@ class CompetitionFactory extends Factory
         
         return [
             'day' => $day,
-            'slug' => Str::slug($day, '-'), 
+            // 'slug' => Str::slug($day, '-'), 
             'hour' => $this->faker->randomElement(['16:00', '18:00']),
             'id_local_club' => $this->faker->randomElement(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
             'id_visitor_club' => $this->faker->randomElement(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),

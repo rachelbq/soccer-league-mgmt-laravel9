@@ -11,11 +11,11 @@ class Club extends Model
 
     protected $guarded = [];
 
-    /* -- friendly urls -- */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // /* -- friendly urls -- */
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     /* -- 1 club has many players -- */
     public function players()
