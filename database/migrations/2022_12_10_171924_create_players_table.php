@@ -22,7 +22,7 @@ return new class extends Migration
             ->nullOnDelete();
 
             $table->string('name');
-            $table->string('slug');
+            // $table->string('slug');
             $table->integer('age');
             $table->string('position')->nullable();
             $table->timestamps();

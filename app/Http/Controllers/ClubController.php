@@ -8,7 +8,7 @@ use App\Models\Club;
 class ClubController extends Controller
 {
     public function indexClub(){
-        $clubs = Club::orderb('id', 'desc')->paginate();
+        $clubs = Club::orderby('id', 'desc')->paginate(5);
         //return $clubs;
         return view('clubs.indexClub', compact('clubs'));
     }
@@ -24,29 +24,25 @@ class ClubController extends Controller
             'coach' => 'required',
             'pitch' => 'required',
             'location' => 'required',
-        ]);        
-
-        // $club = new Club();
+        ]);  
         
-        // $club->name = $request->name;
-        // $club->coach = $request->coach;
-        // $club->pitch = $request->pitch;
-        // $club->location = $request->location;
+        $club = new Club();
+                
+        $club->name = $request->name;
+        $club->coach = $request->coach;
+        $club->pitch = $request->pitch;
+        $club->location = $request->location;
 
-        // //return $club;
+        //return $club;
 
-        // $club->save();
-
-        //massive allocation:
-        $club = Club::create($request->all());
+        $club->save();
 
         return redirect()->route('clubs.show', $club);
     }
 
-    public function showClub($club){
-        $club = Club::find($club);
+    public function showClub(Club $club){
         //return $club;
-        return view('clubs.showClub', ['club'=>$club]);
+        return view('clubs.showClub', compact('club'));
     }
 
     public function editClub(Club $club){
@@ -63,25 +59,22 @@ class ClubController extends Controller
             'pitch' => 'required',
             'location' => 'required',
         ]);
+
+        $club->name = $request->name;
+        $club->coach = $request->coach;
+        $club->pitch = $request->pitch;
+        $club->location = $request->location;
+
+        //return $club;
+
+        $club->save();
         
-        // $club->name = $request->name;
-        // $club->coach = $request->coach;
-        // $club->pitch = $request->pitch;
-        // $club->location = $request->location;
-
-        // //return $club;
-
-        // $club->save();
-        
-        //massive allocation:
-        $club->update($request->all());
-
-        return view('clubs.showClub', ['club'=>$club]);
+        return redirect()->route('clubs.show', $club);
     }
 
     public function destroyClub(Club $club){
         $club->delete();
 
-        return redirect()->route('clubs.indexClub');        
+        return redirect()->route('clubs.index');       
     }
 }

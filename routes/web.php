@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\CompetitionController;
@@ -18,8 +18,8 @@ use Illuminate\Contracts\Cache\Store;
 |
 */
 
-// welcome view route
-Route::get('/', WelcomeController::class)->name('welcome');
+// Home view route
+Route::get('/', HomeController::class)->name('home');
 
 
 // clubs routes
