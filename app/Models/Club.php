@@ -11,22 +11,20 @@ class Club extends Model
 
     protected $guarded = [];
 
-    // /* -- friendly urls -- */
-    // public function getRouteKeyName()
-    // {
-    //     return 'slug';
-    // }
-
     /* -- 1 club has many players -- */
     public function players()
     {
         return $this->hasMany(Player::class, 'id');
     }
 
-    /* -- 1 club has many competitions -- */
-    public function competitions()
+    /* -- 1 club has many competitions (as local & as visitor) -- */
+    public function localCompetitions()
     {
         return $this->hasMany(Competition::class, 'id_local_club');
+    }
+
+    public function visitorCompetitions()
+    {
         return $this->hasMany(Competition::class, 'id_visitor_club');
     }
 }

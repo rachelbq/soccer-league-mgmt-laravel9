@@ -7,7 +7,7 @@
 
 <div class="container max-w-7xl mx-auto mt-8 bg-gradient-to-b from-gray-700 to-gray-800">
     <div class="mb-4 text-xl text-gray-400 px-4 pt-4">
-        <h1>showing / remove / edit CLUB</h1>
+        <h1>showing / remove / edit CLUB data</h1>
     </div>
 
     <div>

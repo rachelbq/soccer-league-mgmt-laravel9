@@ -10,12 +10,6 @@ class Player extends Model
     use HasFactory;
 
     protected $guarded = [];
-
-    /* -- friendly urls -- */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
  
     /* -- 1 player belongs to 1 club -- */
     public function club()
