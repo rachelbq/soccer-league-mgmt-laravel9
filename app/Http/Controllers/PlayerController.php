@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Player;
+use App\Models\Club;
 
 class PlayerController extends Controller
 {
     public function indexPlayer(){
-        $players = Player::orderby('id', 'desc')->paginate();
-        //return $players;
-        return view('players.indexPlayer', compact('players'));
+        $players = Player::orderby('id', 'desc')->paginate(15);
+        $clubs = Club::orderBy('name', 'asc')->get();
+
+        return view('players.indexPlayer', compact('players'))->with('clubs', $clubs);
     }
 
     public function createPlayer(){
-        return view('players.createPlayer');
+        $clubs = Club::orderBy('name', 'asc')->get();
+        $clubs->prepend((object) ['id' => '', 'name' => '--Select club--']);
+        
+        return view('players.createPlayer')->with('clubs', $clubs);
     }
 
     public function storePlayer(Request $request){
@@ -22,60 +27,56 @@ class PlayerController extends Controller
         $request->validate([
             'name' => 'required',
             'age' => 'required',
+            'id_club' => 'required',
+            'position' => 'required',
         ]);
 
-        // $player = new Player();
+        $player = new Player();
         
-        // $player->name = $request->name;
-        // $player->age = $request->age;
-        // $player->position = $request->position;
+        $player->name = $request->name;
+        $player->age = $request->age;
+        $player->id_club = $request->id_club;
+        $player->position = $request->position;
 
-        // //return $player;
-
-        // $player->save();
-
-        //massive allocation:
-        $player = Player::create($request->all());
+        $player->save();
 
         return redirect()->route('players.show', $player);
     }
 
-    public function showPlayer($player){
-        $player = Player::find($player);
-        //return $player;
-        return view('players.showPlayer', ['player'=>$player]);
+    public function showPlayer(Player $player){
+        
+        return view('players.showPlayer', compact('player'));
     }
 
     public function editPlayer(Player $player){
-        //return $player;
-        return view('players.editPlayer', compact('player'));
+        $clubs = Club::orderBy('name', 'asc')->get();
+        $clubs->prepend((object) ['id' => '', 'name' => '--Select club--']);
+       
+        return view('players.editPlayer', compact('player'))->with('clubs', $clubs);
     }
 
     public function updatePlayer(Request $request, Player $player){
-        //return $player;
-
+        
         $request->validate([
             'name' => 'required',
             'age' => 'required|min:2|max:2',
+            'id_club' => 'required',
+            'position' => 'required'
         ]);
         
-        // $player->name = $request->name;
-        // $player->age = $request->age;
-        // $player->position = $request->position;
+        $player->name = $request->name;
+        $player->age = $request->age;
+        $player->id_club = $request->id_club;
+        $player->position = $request->position;
 
-        // //return $player;
+        $player->save();
 
-        // $player->save();
-
-        //massive allocation:
-        $player->update($request->all());
-
-        return view('players.showPlayer', ['player'=>$player]);
+        return redirect()->route('players.show', $player);
     }
 
     public function destroyPlayer(Player $player){
         $player->delete();
 
-        return redirect()->route('players.indexPlayer');        
+        return redirect()->route('players.index');        
     }
 }

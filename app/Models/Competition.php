@@ -11,15 +11,14 @@ class Competition extends Model
 
     protected $guarded = ['score'];
 
-    /* -- friendly urls -- */
-    public function getRouteKeyName()
+    /* -- 1 competition/match belongs to 1 club -- */
+    public function localClub()
     {
-        return 'slug';
+        return $this->belongsTo(Club::class, 'id_local_club');
     }
 
-    /* -- 1 competition belongs to many clubs -- */
-    public function club()
+    public function visitorClub()
     {
-        return $this->belongsTo(Club::class, 'id_club');
+        return $this->belongsTo(Club::class, 'id_visitor_club');
     }
 }

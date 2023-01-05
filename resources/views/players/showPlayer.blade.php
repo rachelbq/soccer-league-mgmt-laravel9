@@ -1,30 +1,46 @@
+<!-- Show Player -->
 @extends('layouts.layout')
 
 @section('title', 'show' . $player->name)
 
 @section('content')
 
-    <h5><strong>CLUB: </strong>{{ $player->name }}</h5>
-    
-    <p><strong>COACH: </strong>{{ $player->coach }}</p>
-    
-    <p><strong>PITCH: </strong>{{ $player->pitch }}</p>
+<div class="container max-w-7xl mx-auto mt-8 bg-gradient-to-b from-gray-700 to-gray-800">
+    <div class="mb-4 text-xl text-gray-400 px-4 pt-4">
+        <h1>showing / remove / edit PLAYER data</h1>
+    </div>
 
-    <p><strong>LOCATION: </strong>{{ $player->location }}</p>
-    
-    <a href = {{ route('players.index') }}>Home</a>
-    <br>
-    
-    <a href = {{ route('players.edit', $player) }}>Edit</a>
-    
-    <form action={{ route('players.destroy', $player )}} method="POST">
+    <div>
+        <div class="overflow-y-auto flex min-h-0 container max-w-7xl pt-6 bg-gray-100 sm:justify-center sm:pt-0">
+            <div class="w-full px-16 py-16 mt-0 overflow-hidden bg-gray-100 rounded-lg lg:max-w-4xl">
+                <div class="w-full text-lg text-gray-700 px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
 
-        @csrf
+                    <h1><strong>PLAYER: </strong>{{ $player->name }}<h1>
+                    <h1><strong>AGE: </strong>{{ $player->age }}</h1>
+                    <h1><strong>CLUB: </strong>{{ $player->club->name }} (id {{ $player->id_club }})</h1>
+                    <h1><strong>POSITION: </strong>{{ $player->position }}</h1>
+                                
+                    <form action="{{ route('players.destroy', $player )}}" method="POST">
 
-        @method('delete')
+                        @csrf
 
-        <button type="submit">Remove</button>
+                        @method('delete')
 
-    </form>
+                        <button type="submit" class="px-6 py-2 mt-5 mb-5 text-lg font-semibold text-gray-100 bg-gray-800 rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300" onclick="return confirmation()">
+                            Remove</button>
+
+                    </form>
+
+                    <button class="px-6 py-2 mr-4 text-lg font-semibold rounded-md shadow-lg text-orange-100 bg-orange-500 hover:bg-orange-700 focus:outline-none focus:border-orange-900 focus:ring ring-orange-300">
+                        <a href={{ route('players.edit', $player) }}>Edit</a></button>
+
+                    <button class="px-6 py-2 text-lg font-semibold text-gray-100 bg-gray-400 rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                        <a href={{ route('players.index') }}>Index</a></button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

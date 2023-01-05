@@ -7,7 +7,7 @@
 
 <div class="container max-w-7xl mx-auto mt-8 bg-gradient-to-b from-gray-700 to-gray-800">
     <div class="mb-4 text-xl text-gray-400 px-4 pt-4">
-        <h1>adding CLUB</h1>
+        <h1>adding a new CLUB</h1>
     </div>
 
    <div>
@@ -22,11 +22,11 @@
                     <!-- Club name -->                
                     <div>
                         <label class="block text-lg font-bold text-gray-700" for="title">
-                        CLUB:
+                            *CLUB:
                         </label>
 
                         <input
-                            class="block text-lg w-full mt-1 border-orange-300 rounded-md shadow-sm placeholder:italic placeholder:text-orange-200 placeholder:text-left focus:border-orange-500 focus:ring focus:ring-orange-300 focus:ring-opacity-50"
+                            class="block text-lg w-full mt-1 border-orange-300 rounded-md shadow-sm placeholder:italic placeholder:text-orange-400 placeholder:text-left focus:border-orange-500 focus:ring focus:ring-orange-300 focus:ring-opacity-50"
                             input type="text" name="name" value="{{ old('name') }}" />
 
                         @error('name')
@@ -38,11 +38,11 @@
                     <!-- Coach -->                
                     <div>
                         <label class="block text-lg font-bold text-gray-700" for="title">
-                            COACH:
+                            *COACH:
                         </label>
 
                         <input
-                        class="block text-lg w-full mt-1 border-orange-300 rounded-md shadow-sm placeholder:italic placeholder:text-orange-200 placeholder:text-left focus:border-orange-500 focus:ring focus:ring-orange-300 focus:ring-opacity-50"
+                        class="block text-lg w-full mt-1 border-orange-300 rounded-md shadow-sm placeholder:italic placeholder:text-orange-400 placeholder:text-left focus:border-orange-500 focus:ring focus:ring-orange-300 focus:ring-opacity-50"
                             input type="text" name="coach" value="{{ old('coach') }}" />
 
                         @error('coach')
@@ -54,12 +54,12 @@
                     <!-- Pitch -->                
                     <div>
                         <label class="block text-lg font-bold text-gray-700" for="title">
-                            PITCH:
+                            *PITCH:
                         </label>
 
                         <input
-                            class="block text-lg w-full mt-1 border-orange-300 rounded-md shadow-sm placeholder:italic placeholder:text-orange-200 placeholder:text-left focus:border-orange-500 focus:ring focus:ring-orange-300 focus:ring-opacity-50"
-                            input type="text" name="pitch" value="{{ old('pitch') }}" placeholder="local training & playing pitch" />
+                            class="block text-lg w-full mt-1 border-orange-300 rounded-md shadow-sm placeholder:italic placeholder:text-orange-400 placeholder:text-left focus:border-orange-500 focus:ring focus:ring-orange-300 focus:ring-opacity-50"
+                            input type="text" name="pitch" value="{{ old('pitch') }}" placeholder="--Training & playing pitch--" />
 
                         @error('pitch')
                             <small>*{{ $message }}</small>
@@ -70,18 +70,24 @@
                     <!-- Club location -->                
                     <div>
                         <label class="block text-lg font-bold text-gray-700" for="title">
-                            CLUB LOCATION:
+                            *CLUB LOCATION:
                         </label>
 
                         <input
-                            class="block text-lg w-full mt-1 border-orange-300 rounded-md shadow-sm placeholder:italic placeholder:text-orange-200 placeholder:text-left focus:border-orange-500 focus:ring focus:ring-orange-300 focus:ring-opacity-50"
-                            input type="text" name="location" value="{{ old('location') }}" placeholder="city ​​to which the club is affiliated" />
+                            class="block text-lg w-full mt-1 border-orange-300 rounded-md shadow-sm placeholder:italic placeholder:text-orange-400 placeholder:text-left focus:border-orange-500 focus:ring focus:ring-orange-300 focus:ring-opacity-50"
+                            input type="text" name="location" value="{{ old('location') }}" placeholder="--City ​​to which the club is affiliated--" />
 
                         @error('location')
                             <small>*{{ $message }}</small>
                             <br>            
                         @enderror
-                    </div>           
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mt-2" for="title">
+                            *required field.
+                        </label>
+                    </div>
   
                     <div class="flex items-center justify-start mt-4 gap-x-2">
                         <button type="submit"
@@ -90,10 +96,11 @@
                         </button>
                         <button type="submit"
                             class="px-6 py-2 text-lg font-semibold text-gray-100 bg-gray-400 rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300">
+                            <a href="{{ route('clubs.index') }}">
                             Cancel
+                            </a>
                         </button>
                     </div>
-
                     </form>
                 </div>
             </div>

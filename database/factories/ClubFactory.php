@@ -22,7 +22,6 @@ class ClubFactory extends Factory
         
         return [
             'name' => $name,
-            // 'slug' => Str::slug($name, '-'),
             'coach' => $this->faker->randomElement(['Hanna Sinclair', 'Molly Moulin', 'Brithney Curtis', 'Alexa Stavros', 'Alana Hamilton', 'Hanna Harris', 'Molly Lee', 'Brithney Hunter', 'Alexia Curtis', 'Amber Harrison']),
             'location' => $this->faker->randomElement(['Tennessee', 'Colorado', 'Philadelphia', 'Maryland']),
             'pitch' => $this->faker->paragraph(1),

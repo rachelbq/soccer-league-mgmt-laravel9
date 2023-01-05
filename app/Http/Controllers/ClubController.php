@@ -9,7 +9,6 @@ class ClubController extends Controller
 {
     public function indexClub(){
         $clubs = Club::orderby('id', 'desc')->paginate(5);
-        //return $clubs;
         return view('clubs.indexClub', compact('clubs'));
     }
 
@@ -33,25 +32,20 @@ class ClubController extends Controller
         $club->pitch = $request->pitch;
         $club->location = $request->location;
 
-        //return $club;
-
         $club->save();
 
         return redirect()->route('clubs.show', $club);
     }
 
     public function showClub(Club $club){
-        //return $club;
         return view('clubs.showClub', compact('club'));
     }
 
     public function editClub(Club $club){
-        //return $club;
         return view('clubs.editClub', compact('club'));
     }
 
     public function updateClub(Request $request, Club $club){
-        //return $club;
 
         $request->validate([
             'name' => 'required',
@@ -64,8 +58,6 @@ class ClubController extends Controller
         $club->coach = $request->coach;
         $club->pitch = $request->pitch;
         $club->location = $request->location;
-
-        //return $club;
 
         $club->save();
         

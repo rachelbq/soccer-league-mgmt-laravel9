@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-//use Illuminate\Support\DateFactory;
 use App\Models\Competition;
 
 /**
@@ -19,13 +18,11 @@ class CompetitionFactory extends Factory
      */
     public function definition()
     {
-        //$date = $this->faker->DateFactory();
-        $day = $this->faker->randomElement(['14th January 2023', '21st January 2023', '28th January 2023', '4th February 2023', '11th February 2023']);
+        $day = $this->faker->randomElement(['2023-01-06', '2023-01-13', '2023-01-20', '2023-01-27', '2023-02-04']);
         
         return [
             'day' => $day,
-            // 'slug' => Str::slug($day, '-'), 
-            'hour' => $this->faker->randomElement(['16:00', '18:00']),
+            'hour' => $this->faker->randomElement(['16:00:00', '18:00:00']),
             'id_local_club' => $this->faker->randomElement(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
             'id_visitor_club' => $this->faker->randomElement(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
             'referee' => $this->faker->randomElement(['Lara Croft', 'Barbara Hornbusch', 'Teresa Pérez', 'Hanna Schygulla', 'Yvanna Luss', 'Lolita Cruz', 'Margaret	Smith', 'Olivia	Jones', 'Isla Williams']),
